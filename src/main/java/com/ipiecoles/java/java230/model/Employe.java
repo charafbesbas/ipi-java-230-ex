@@ -3,8 +3,10 @@ package com.ipiecoles.java.java230.model;
 import org.hibernate.annotations.Type;
 import org.joda.time.LocalDate;
 
+import javax.persistence.Entity;
 import java.util.Objects;
 
+@Entity
 public abstract class Employe {
 
 	private Long id;
