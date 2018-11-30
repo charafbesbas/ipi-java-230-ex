@@ -4,6 +4,8 @@ import com.ipiecoles.java.java230.model.Employe;
 import org.joda.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 import com.ipiecoles.java.java230.repository.EmployeRepository;
@@ -32,7 +34,9 @@ public class MyRunner implements CommandLineRunner {
             employe = employeRepository.save(employe);
             System.out.println(employe.getId());*/
 
-           Iterable<Employe> employes =  employeRepository.findAll(new Sort(Sort.Direction.ASC,"dateEmbauche"));
+           Iterable<Employe> employes =  employeRepository.findAll(new PageRequest(0,15, Sort.Direction.ASC,"dateEmbauche"));
+            System.out.println("Nb employés : " + ((Page<Employe>) employes).getTotalElements());
+            System.out.println("Nb pagess : " + ((Page<Employe>) employes).getTotalPages());
            for (Employe emp : employes) {
                System.out.println(emp);
            }
