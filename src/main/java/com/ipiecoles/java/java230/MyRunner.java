@@ -4,8 +4,11 @@ import com.ipiecoles.java.java230.model.Employe;
 import org.joda.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 import com.ipiecoles.java.java230.repository.EmployeRepository;
+
+import java.util.ArrayList;
 
 @Component
 public class MyRunner implements CommandLineRunner {
@@ -22,12 +25,17 @@ public class MyRunner implements CommandLineRunner {
 
             //Delete
             //employeRepository.delete(2521L);
-            
+
             //Create
-            Employe employe = new Employe("Doe","John","X6666", LocalDate.now(),);
+           /* Employe employe = new Employe("Doe","John","X6666", LocalDate.now(),2000.0);
             System.out.println(employe.getId());//Null
             employe = employeRepository.save(employe);
-            System.out.println(employe.getId());
+            System.out.println(employe.getId());*/
+
+           Iterable<Employe> employes =  employeRepository.findAll(new Sort(Sort.Direction.ASC,"dateEmbauche"));
+           for (Employe emp : employes) {
+               System.out.println(emp);
+           }
         }
 
 
